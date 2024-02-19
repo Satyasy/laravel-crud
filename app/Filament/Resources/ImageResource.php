@@ -32,7 +32,8 @@ class ImageResource extends Resource
                     ->required(),
                 FileUpload::make('url')
                     ->disk('s3')
-                    ->visibility('public')
+                    ->directory('tmp')
+                    ->visibility('private')
             ]);
     }
 
