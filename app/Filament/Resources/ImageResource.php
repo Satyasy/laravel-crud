@@ -2,20 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ImageResource\Pages;
-use App\Filament\Resources\ImageResource\RelationManagers;
-use App\Models\Image;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Image;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ImageResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ImageResource\RelationManagers;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ImageResource extends Resource
 {
@@ -32,8 +33,7 @@ class ImageResource extends Resource
                     ->required(),
                 FileUpload::make('url')
                     ->disk('s3')
-                    ->directory('tmp')
-                    ->visibility('private')
+                    ->visibility('public')
             ]);
     }
 
@@ -43,8 +43,7 @@ class ImageResource extends Resource
             ->columns([
                 TextColumn::make('filename')
                     ->label('Filename'),
-                ImageColumn::make('url')
-                    ->label('Image')
+                ImageColumn::make('url')->label('Image')
             ])
             ->filters([
                 //
