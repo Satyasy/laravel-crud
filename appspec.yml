@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destinaton: /var/www/filament
+hooks:
+  BeforeInstall:
+    - location: Scripts/beforeInstall.sh
+  AfterInstall:
+    - location: Scripts/afterInstall.sh
+      timeout: 180
+  ApplicationStart:
+    - location: Scripts/start.sh
+      timeout: 3600
