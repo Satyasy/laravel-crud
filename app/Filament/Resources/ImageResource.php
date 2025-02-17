@@ -84,7 +84,7 @@ class ImageResource extends Resource
         } catch (\Exception $e) {
             \Log::error('Error deleting file from S3: ' . $e->getMessage());
             throw $e;
-        }3
+        }
     }
 
     // Override method deleteAction di Filament
